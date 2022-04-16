@@ -9,14 +9,31 @@ const Grid = (props) => {
     padding,
     bg,
     children,
-    center,
+    flex,
+    justify,
     _onClick,
-    flex_end,
-    border,
-    is_center,
+    position,
     height,
-    boxShadow,
-    borderRadius,
+    border,
+    background,
+    ///
+    direction,
+    items,
+    top,
+    left,
+    transform,
+    radius,
+    borderB,
+    borderT,
+    borderL,
+    ////
+    alignItems,
+    maxWidth,
+    boxSizing,
+    //
+    zIndex,
+    overflow,
+    is_center,
   } = props;
 
   const styles = {
@@ -25,15 +42,28 @@ const Grid = (props) => {
     margin: margin,
     padding: padding,
     bg: bg,
-    center: center,
-    flex_end: flex_end,
-    border: border,
-    is_center: is_center,
+    flex: flex,
+    justify: justify,
+    position: position,
     height: height,
-    boxShadow: boxShadow,
-    borderRadius : borderRadius,
+    border: border,
+    background: background,
+    alignItems: alignItems,
+    maxWidth: maxWidth,
+    boxSizing: boxSizing,
+    left: left,
+    radius: radius,
+    direction,
+    items,
+    top,
+    transform,
+    borderB,
+    borderT,
+    borderL,
+    zIndex,
+    overflow,
+    is_center,
   };
-
   return (
     <React.Fragment>
       <GridBox {...styles} onClick={_onClick}>
@@ -47,40 +77,64 @@ Grid.defaultProps = {
   chidren: null,
   is_flex: false,
   width: "100%",
-  height: "100%",
   padding: false,
   margin: false,
   bg: false,
-  center: false,
-  _onClick: () => {},
-  flex_end: false,
+  flex: false,
+  justify: false,
+  wrap: false,
+  position: false,
+  height: "50px",
   border: false,
+  background: false,
+  alignItems: false,
+  maxWidth: false,
+  boxSizing: false,
+  left: false,
+  radius: "0",
+  zIndex: false,
   is_center: false,
-  boxShadow: false,
-  borderRadius: null,
+  
 };
 
 const GridBox = styled.div`
   width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  box-shadow: ${(props) => props.boxShadow};
-  box-sizing: border-box;
+  ${(props) => (props.background ? `background: ${props.background};` : "")}
+  max-width: ${(props) => props.maxWidth};
+  ${(props) => (props.left ? `left: ${props.left};` : "")}
+  ${(props) => (props.top ? `top: ${props.top};` : "")}
+  ${(props) => (props.boxSizing ? `box-sizing: border-box;` : "")}
+  ${(props) => (props.border ? `border: ${props.border};` : "")}
+  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")}
+  ${(props) => (props.height ? `height: ${props.height};` : "")}
+  ${(props) => (props.position ? `position: ${props.position};` : "")}
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
+  ${(props) => (props.wrap ? `flex-wrap: wrap;` : "")}
+  ${(props) => (props.justify ? `justify-content: ${props.justify};` : "")}
+  ${(props) => (props.direction ? `flex-direction: ${props.direction};` : "")}
+  ${(props) => (props.items ? `align-items: ${props.items};` : "")}
+  ${(props) => (props.transform ? `transform: ${props.transform};` : "")}
+  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")}
+  ${(props) => (props.borderB ? `border-bottom: ${props.borderB};` : "")}
+  ${(props) => (props.borderT ? `border-top: ${props.borderT};` : "")}
+  ${(props) => (props.borderL ? `border-left: ${props.borderL};` : "")}
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
+  ${(props) => (props.flex ? `display: flex;` : "")}
   ${(props) =>
     props.is_flex
-      ? `display: flex; align-items: center; justify-content: space-between;`
+      ? `display: flex; align-items: center; justify-content: space-between; `
       : ""}
   ${(props) =>
     props.is_center
       ? `display: flex; flex-direction : column; align-items: center; justify-content: center;`
       : ""}
-  ${(props) => (props.center ? `text-align: center;` : "")}
-  ${(props) =>
-    props.flex_end ? `display: flex; justify-content: flex-end;` : ""}
-  ${(props) => (props.border ? `border:${props.border}` : "")}
-  ${(props) => (props.borderRadius ? `border-radius:${props.borderRadius}` : "")}
+  ${(props) => (props.flex ? `display: flex; ` : "")}
+  ${(props) => (props.alignItems ? `align-items: ${props.alignItems};` : "")} 
+  
+  ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "")}
+  ${(props) => (props.overflow ? `overflow: scroll;` : "")}
+  
 `;
 
 export default Grid;

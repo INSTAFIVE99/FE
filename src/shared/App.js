@@ -9,6 +9,7 @@ import styled from "styled-components";
 // import PostList from "../pages/PostList";
 // import PostDetail from "../pages/PostDetail";
 import Login from "../pages/Login";
+import SignUp from "../pages/SignUp";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
 
           <ConnectedRouter history={history}>
             <Route path="/" exact component={Login} />
+            <Route path="/signUp" exact component={SignUp} />
 
             {/* <Route path="/postList" exact component={PostList} />
             <Route path="/post/:id" exact component={PostDetail} />

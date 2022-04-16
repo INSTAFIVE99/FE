@@ -13,6 +13,8 @@ const Input = (props) => {
     maxLength,
     border,
     resize,
+    radius,
+    height
   } = props;
 
   if (multiLine) {
@@ -27,6 +29,7 @@ const Input = (props) => {
           value={value}
           border={border}
           resize={resize}
+          radius={border-radius}
         ></ElTextarea>
       </Grid>
     );
@@ -38,12 +41,14 @@ const Input = (props) => {
         <Text margin="0">{label}</Text>
 
         <ElInput
+          height={height}
           type={type}
           placeholder={placeholder}
           onChange={_onChange}
           value={value}
           maxLength={maxLength}
           border={border}
+          radius={radius}
         />
       </Grid>
     </React.Fragment>
@@ -60,11 +65,14 @@ Input.defaultProps = {
   maxLength: "",
   border: "",
   resize: "none",
+  radius:"20px"
 };
 
 const ElInput = styled.input`
   border: 1px solid #212121;
+  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
   width: 100%;
+  ${(props) => (props.height ? `height: ${props.height};` : "")};
   padding: 12px 4px;
   box-sizing: border-box;
   ${(props) => (props.border ? `border: ${props.border};` : "")};

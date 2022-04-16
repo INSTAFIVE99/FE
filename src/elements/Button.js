@@ -14,6 +14,8 @@ const Button = (props) => {
     _disabled,
     backgroundColor,
     height,
+    fontSize,
+    radius
   } = props;
 
   if (is_float) {
@@ -31,6 +33,8 @@ const Button = (props) => {
     backgroundColor: backgroundColor,
     height: height,
     color: color,
+    fontSize: fontSize,
+    radius: radius,
   };
 
   return (
@@ -63,8 +67,8 @@ const ElButton = styled.button`
   padding: ${(props) => props.padding};
   box-sizing: border-box;
   border: none;
-  border-radius: 10px;
-  font-size: 15px;
+  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
+  font-size: ${(props) => props.fontSize};
   font-weight: 700;
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   ${(props) =>
