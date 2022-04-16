@@ -8,7 +8,12 @@ import styled from "styled-components";
 // import Header from "../components/Header";
 // import PostList from "../pages/PostList";
 // import PostDetail from "../pages/PostDetail";
-import Login from "../pages/Login";
+// import Login from "../pages/Login";
+import Header from "../components/Header";
+import PostList from "../pages/PostList";
+import PostImage from "../pages/PostImage";
+import PostWrite from "../pages/PostWrite";
+import PostDetail from "../pages/PostDetail";
 
 
 function App() {
@@ -18,32 +23,28 @@ function App() {
     // dispatch(useActions.loginCheck());
   }, []);
 
+
   return (
     <React.Fragment>
-      <Container>
-        <Grid>
-          {/* <Header></Header> */}
+
+        <Header></Header>
 
           <ConnectedRouter history={history}>
-            <Route path="/" exact component={Login} />
+            {/* <Route path="/" exact component={Login} /> */}
+            
+             <Route path="/postList" component={PostList} /> 
+             <Route path="/postImage" component={PostImage} />
+             <Route path="/postAdd" component={PostWrite} />
+             <Route path="/detail/:id" exact component={PostDetail} />
 
-            {/* <Route path="/postList" exact component={PostList} />
-            <Route path="/post/:id" exact component={PostDetail} />
-            <Route path="/post" exact component={PostWrite} />
-            <Route path="/modify/:id" exact component={PostWrite} /> */}
+            
+            {/* <Route path="/modify/:id" exact component={PostWrite} /> */}
 
           </ConnectedRouter>
-          
-        </Grid>
-      </Container>
+
     </React.Fragment>
   );
 }
 
 export default App;
 
-const Container = styled.div`
-  width: 1200px;
-  margin: 0 auto;
-  height: 100%;
-`;
