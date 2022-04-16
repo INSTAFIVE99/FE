@@ -94,7 +94,6 @@ Grid.defaultProps = {
   radius: "0",
   zIndex: false,
   is_center: false,
-  
 };
 
 const GridBox = styled.div`
@@ -134,7 +133,6 @@ const GridBox = styled.div`
   
   ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "")}
   ${(props) => (props.overflow ? `overflow: scroll;` : "")}
-  
 `;
 
 export default Grid;

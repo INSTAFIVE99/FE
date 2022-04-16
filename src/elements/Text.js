@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Text = (props) => {
-  const { bold, color, size, children, margin, _onClick, textAlign, width } =
+  const { bold, color, size, children, margin, _onClick, textAlign, width, padding } =
     props;
 
   const styles = {
@@ -12,6 +12,7 @@ const Text = (props) => {
     margin,
     textAlign,
     width,
+    padding,
   };
 
   return (
@@ -30,6 +31,7 @@ Text.defaultProps = {
   margin: false,
   textAlign: "unset",
   width: 0,
+  padding: 0,
 };
 
 const P = styled.p`
@@ -40,9 +42,7 @@ const P = styled.p`
   text-align: ${(props) => props.textAlign};
   ${(props) => (props.width ? `width: ${props.width};` : "")};
 
-  @media (max-width: 48em) {
-    font-size: 16px;
-  }
+  ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
 `;
 
 export default Text;
