@@ -6,13 +6,13 @@ const Image = (props) => {
 
   const { shape, src, size, paddingLeft, width, height } = props;
 
-
   const styles = {
     src: src,
     size: size,
     paddingLeft: paddingLeft,
     width: width,
     height: height,
+    shape: shape,
   };
 
   //프로필 이미지
@@ -43,6 +43,7 @@ Image.defaultProps = {
   size: 36,
   paddingLeft: false,
 };
+
 
 const AspectOutter = styled.div`
   width: 100%;

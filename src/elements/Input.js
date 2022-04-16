@@ -14,7 +14,8 @@ const Input = (props) => {
     border,
     resize,
     radius,
-    height
+    height,
+    onblur,
   } = props;
 
   if (multiLine) {
@@ -39,13 +40,12 @@ const Input = (props) => {
     <React.Fragment>
       <Grid>
         <Text margin="0">{label}</Text>
-
         <ElInput
+          onblur={onblur}
           height={height}
           type={type}
           placeholder={placeholder}
           onChange={_onChange}
-          value={value}
           maxLength={maxLength}
           border={border}
           radius={radius}
@@ -65,7 +65,8 @@ Input.defaultProps = {
   maxLength: "",
   border: "",
   resize: "none",
-  radius:"20px"
+  radius:"20px",
+  defaultValue:""
 };
 
 const ElInput = styled.input`

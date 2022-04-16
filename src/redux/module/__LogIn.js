@@ -1,9 +1,8 @@
 import axios from "axios";
-import { actionCreators as FeedActions } from '../modules/feed'
-// import Cookies from "universal-cookie";
-// import jwt_decode from "jwt-decode";
+import Cookies from "universal-cookie";
+import jwt_decode from "jwt-decode";
 
-// const cookies = new Cookies();
+const cookies = new Cookies();
 
 // action
 const LOGIN = "login/LOGIN";
@@ -33,17 +32,17 @@ export const __Login =
           localStorage.setItem('token', token)
           window.alert("로그인 성공");
           history.push("/main");
-          // dispatch(login({ username: res.data.username, nickname: res.data.nickname }))
+          dispatch(login({ username: res.data.username, nickname: res.data.nickname }))
         })
         .catch((error) => { console.log(error.response.data) })
 
-      // cookies.set("myJwt", token, { path: "/" });
-      // const { username, password } = jwt_decode(token);
-      // cookies.set("username", username, { path: "/" });
-      // cookies.set("password", password, { path: "/" });
+      cookies.set("myJwt", token, { path: "/" });
+      const { username, password } = jwt_decode(token);
+      cookies.set("username", username, { path: "/" });
+      cookies.set("password", password, { path: "/" });
 
       // 리덕스로 2차 dispatch
-      // dispatch(login(paylaod));
+      dispatch(login(paylaod));
 
     };
 
@@ -53,7 +52,7 @@ export const auth = () => {
 
     const token = localStorage.getItem('token')
 
-    axios.get("", { headers: { 'Authorization': `Bearer ${token}` } })
+    axios.get("/api/user/login", { headers: { 'Authorization': `Bearer ${token}` } })
       .then((res) => {
         dispatch(login({ username: res.data.username, nickname: res.data.nickname }))
       })

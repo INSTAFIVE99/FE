@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { isStrongPassword, isLength, isAlphanumeric } from 'validator';
 
-
+import { __SignUp } from "../redux/module/__SignUp";
 import { Grid, Button, Input, Text, Image} from "../elements"
 
 
@@ -25,20 +25,19 @@ const SignUp = () => {
   
   
     const signUp = () => {
-  
        
       if (!isAlphanumeric(username) || !isLength(username, { min:4, max:12 })){
         window.alert("아이디는 4~12자의 영문 대소문자와 숫자를 입력해주세요.")
       }
-      
-      if (!isStrongPassword(password) || !isLength(password, { min:8, max:16 })){
-        window.alert("비밀번호는 8~16자의 영문 대소문자, 숫자를 입력해주세요.")
-      }
-      
+
       if (!isAlphanumeric(nickname) || !isLength(nickname, { min:4, max:12 })){
         window.alert("닉네임은 4~12자의 영문 대소문자와 숫자를 입력해주세요.")
       }
       
+      if (!isStrongPassword(password) || !isLength(password, { min:8, max:16 })){
+        window.alert("비밀번호는 8~16자의 영문 대소문자, 숫자 그리고 기호를 포함합니다.")
+      }
+           
       if (password !== validPassword) {
         window.alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.")
       };
@@ -47,9 +46,24 @@ const SignUp = () => {
         window.alert("빈칸을 채워주세요.");
         return;
       };
+
+      dispatch(__SignUp({
+        username: username,
+        nickname: nickname,
+        password: password,
+        validPassword: validPassword
+    }))
+
+    const unCheck= (username) => {
+      
+    }
+
+    const nnCheck= (nickname) => {
+
+    }
+
   
     };
-
     return(
       <Grid>
         <Grid
@@ -74,6 +88,7 @@ const SignUp = () => {
               boxSizing="border-box"
             >
               <Image
+                  shape="rectangle"
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png?20160616034027"
                   width="75%"
               />
@@ -117,63 +132,71 @@ const SignUp = () => {
               alignItems="center"
               height="380px"
               width="80%">
+            <form 
+            style={formStyle} 
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}>
             <Input
                     radius="3px"
                     height="35px"
                     label=""
                     type="text"
-                    placeholder="전화번호, 사용자 이름 또는 이메일"
+                    placeholder=" Your Id (4~12, Aa, 123..)"
                     border="1px solid lightgray"
                     name="username"
-                    // _onChange={(e) => {
-                    //     setUserName(e.targe.value);
-                    // }}
+                    // onblur={unCheck}
+                    _onChange={(e) => {
+                        setusername(e.target.value);
+                    }}
                 />
             <Input
                     radius="3px"
                     height="35px"
                     label=""
                     type="text"
-                    placeholder="사용자 닉네임"
+                    placeholder=" Nickname (4~12, Aa, 123..)"
                     border="1px solid lightgray"
-                    name="username"
-                    // _onChange={(e) => {
-                    //     setUserName(e.targe.value);
-                    // }}
+                    name="nickname"
+                    // onblur={nnCheck}
+                    _onChange={(e) => {
+                        setnickname(e.target.value);
+                    }}
                 />
             <Input
                     radius="3px"
                     height="35px"
                     label=""
-                    type="text"
-                    placeholder="비밀번호"
+                    type="password"
+                    placeholder=" Password (8~16, Aa , !@#.., 123..)"
                     border="1px solid lightgray"
-                    name="username"
-                    // _onChange={(e) => {
-                    //     setUserName(e.targe.value);
-                    // }}
+                    name="password"
+                    _onChange={(e) => {
+                        setpassword(e.target.value);
+                    }}
                 />
             <Input
                     radius="3px"
                     height="35px"
                     label=""
-                    type="text"
-                    placeholder="비밀번호 확인"
+                    type="password"
+                    placeholder=" Password Again"
                     border="1px solid lightgray"
-                    name="username"
-                    // _onChange={(e) => {
-                    //     setUserName(e.targe.value);
-                    // }}
+                    name="validPassword"
+                    _onChange={(e) => {
+                        setvalidPassword(e.target.value);
+                    }}
                 />
-                
-              <Button
+                <Button
                 radius="3px"
                 fontSize="12px"
                 width="100%"
                 height="30px"
-                margin="30px 0"
+                margin="13px 0"
                 padding=""
+                _onClick={signUp}
               >가입하기</Button>
+              </form>
             </Grid>
         </Grid>
         <Grid
@@ -219,3 +242,9 @@ const SignUp = () => {
 }
 
     export default SignUp;
+
+
+
+const formStyle = {
+  width: "100%"
+}

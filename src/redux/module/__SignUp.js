@@ -5,11 +5,22 @@ const SIGNUP = "signUp/SIGNUP";
 
 
 const initialState = {
-  userid: "",
+  username: "",
   nickname: "",
   password: "",
   validPassword: ""
 };
+
+
+// const unCheck = () => {
+        
+// }
+
+// const nnCheck = () => {
+
+// }
+
+
 
 
 
@@ -18,10 +29,9 @@ function signUp(payload) {
   };
 
 export const __SignUp =
-  (signup) =>
+  (signUp) =>
   async (dispatch, getState, { history }) => {
-    //네트워크 요청
-    axios.post("", signup)
+    axios.post("/api/user/signup", signUp)
       .then(() => {
         window.alert("회원가입 완료");
         history.replace("/");
@@ -36,7 +46,7 @@ const signUpReducer = (state = initialState, action) => {
       case SIGNUP:
         return {
           ...state,
-          userid: this.state.userid,
+          username: this.state.username,
           nickname: this.state.nickname,
           password: this.state.password,
           validPassword: this.state.validPassword
