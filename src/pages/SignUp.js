@@ -50,8 +50,7 @@ const SignUp = () => {
       dispatch(__SignUp({
         username: username,
         nickname: nickname,
-        password: password,
-        validPassword: validPassword
+        password: password
     }))
 
     const unCheck= (username) => {
