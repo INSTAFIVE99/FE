@@ -51,11 +51,12 @@ const Detail = () => {
       top="0"
       left="0"
       zIndex="11"
+      is_center
     >
       <Grid
         className={"modalcont"}
         width="1060px"
-        height="80vh"
+        height="650px"
         margin="100px auto 0 auto"
         background="#fff"
         radius="10px"
@@ -65,10 +66,10 @@ const Detail = () => {
         icon={faXmark}
           style={{
             position: "absolute",
-            top: "40px",
+            top: "30px",
             right: "10px",
             color: "#fff",
-            height: "50",
+            height: "30px",
             fontSize: "100px",
           }}
           onClick={() => {

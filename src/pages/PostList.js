@@ -15,6 +15,7 @@ const PostList = () => {
 
     const dispatch = useDispatch();
     const post_list = useSelector((state) => state.post.list);
+    // console.log(post_list)
 
     const [moreInfo, setMoreInfo] = useState(false);
 
@@ -54,6 +55,7 @@ const PostList = () => {
           <PostBox>
           {post_list.map((p, idx) => {
             return <Post key={idx} {...p} />;
+            
           })}
 
           

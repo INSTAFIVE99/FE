@@ -149,7 +149,7 @@ const Post = (props) => {
       <Grid>
           <PostImage
             // src={props.upload[0].path}
-            src="https://i.pinimg.com/originals/14/f5/9b/14f59b8c01290e9d2df0a39fbbc7679a.jpg"
+            src={props.img}
           />
       </Grid>
 
