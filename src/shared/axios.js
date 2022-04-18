@@ -2,6 +2,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 export const instance = axios.create({
+  //baseURL: "http://13.124.136.171/",
   baseURL: "http://localhost:3001/",
 
   headers: {
@@ -12,7 +13,7 @@ export const instance = axios.create({
 // 헤더에 토큰 보내기
 instance.interceptors.request.use(function (config) {
   const accessToken = document.cookie.split("=")[1];
-  config.headers.common["Authorization"] = `Bearer ${accessToken}`;
+  config.headers.common["Authorization"] = `Bearer ${accessToken}`;    //확인 필요
   return config;
 });
 
@@ -31,7 +32,7 @@ export const apis = {
 
   postGet: () => instance.get("/posts"),       //api/붙여야됨!
 
-//   postOne: (postId) => instance.get(`/post/${postId}`),
+  postOne: (postId) => instance.get(`/posts/${postId}`),
 
 //   postWrite: (title, content) =>
 //     instance.post("/post", { title: title, content: content }),

@@ -16,6 +16,7 @@ const Header = (props) => {
   };
 
   if (window.location.pathname === "/") return null;
+  if (window.location.pathname === "/signUp") return null;
 
   return (
     <Nav>

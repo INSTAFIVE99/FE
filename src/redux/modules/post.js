@@ -28,7 +28,7 @@ const initialPost = {
     content: "내용내용",
     liked: 0,
     imageUrl: "",
-    comment: [],  //체크 필요
+    comment: {},  //[ {"userid", "comment"},  ...]
 };
 
 //4.
@@ -39,6 +39,7 @@ export const getPostDB =
     try {
       const { data } = await apis.postGet();
       dispatch(setPost(data));
+      console.log(data)
     } catch (e) {
       console.log(e);
     }
