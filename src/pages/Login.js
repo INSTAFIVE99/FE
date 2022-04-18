@@ -2,6 +2,9 @@ import React, {useState}  from "react";
 import styled from "styled-components";
 import { Grid, Button, Input, Text, Image } from "../elements";
 
+
+import { __Login } from "../redux/module/__LogIn"
+
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -18,6 +21,9 @@ const Login = () => {
         password: ""
     });
 
+    const [ username, setUserName ] = useState();
+    const [ password, setPassword ] = useState();
+
     const onChangeInput = (e) => {
         const { value, name } = e.target;
 
@@ -28,16 +34,18 @@ const Login = () => {
     }
 
 
-    const [ username, setUserName ] = useState();
-    const [ password, setPassword ] = useState();
-
-
-
     const login = () => {
         if (username === "" || password ===""){
             window.alert("아이디 혹은 비밀번호 입력")
             return;
         }
+
+        dispatch(__Login({
+            isLogin: false,
+            username: username,
+            password: password,
+          }));
+
     }
     
 
@@ -56,6 +64,7 @@ const Login = () => {
             border="1px solid lightgray"
         >
             <Image
+                shape="rectangle"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png?20160616034027"
                 width="75%"
             />
@@ -73,6 +82,9 @@ const Login = () => {
                     // border="5px solid red"
                     width="80%"
                 >
+                <form onSubmit={(e) => {
+                e.preventDefault();
+                }}>
                 <Input
                     radius="3px"
                     height="40px"
@@ -82,30 +94,29 @@ const Login = () => {
                     border="1px solid lightgray"
                     name="username"
                     _onChange={(e) => {
-                        setUserName(e.targe.value);
+                        setUserName(e.target.value);
                     }}
                 ></Input>
                 <Input
                     radius="3px"
                     height="40px"
                     label=''
-                    type="text"
+                    type="password"
                     placeholder="비밀번호"
                     border="1px solid lightgray"
                     name="password"
                     _onChange={(e) => {
-                        setPassword(e.targe.value);
+                        setPassword(e.target.value);
                     }}
                 ></Input>
+                </form>
                 </Grid>
-                
                     <Button
                     radius="3px"
                     fontSize="8px"
                     width="75%"
                     height="30px"
                     padding=""
-                    // { btnColor ? color= "skyblue" : color= "lightblue"}
                     _onClick={login}>로그인</Button>
                 </Grid>
             <Grid
