@@ -29,11 +29,11 @@ export const __Login =
       axios.post("http://13.124.136.171/api/user/login", { username: paylaod.username, password: paylaod.password })
         .then((res) => {
           token = res.data.token
-          // localStorage.setItem('token', token)
+          // localStorage.setItem('token', token);
           cookies.set("myJwt", token, { path: "/" });
           const { username, password } = jwt_decode(token);
           cookies.set("username", username, { path: "/" });
-          cookies.set("password", password, { path: "/" });
+          // cookies.set("password", password, { path: "/" });
           window.alert("로그인 성공");
           history.push("/postList");
           dispatch(login({ username: res.data.username, nickname: res.data.nickname }))
@@ -44,7 +44,6 @@ export const __Login =
 
       // 리덕스로 2차 dispatch
       dispatch(login(paylaod));
-
     };
 
 
@@ -56,7 +55,7 @@ export const auth = () => {
     axios.get("/api/user/login", { headers: { 'Authorization': `Bearer ${token}` } })
       .then((res) => {
         dispatch(login({ username: res.data.username, nickname: res.data.nickname }))
-      })
+    })
   }
 }
 

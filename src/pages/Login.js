@@ -8,9 +8,11 @@ import { __Login } from "../redux/module/__LogIn"
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
+import { get } from "lodash";
 
 
 const Login = () => {
+
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -24,6 +26,7 @@ const Login = () => {
     const [ username, setUserName ] = useState();
     const [ password, setPassword ] = useState();
 
+
     const onChangeInput = (e) => {
         const { value, name } = e.target;
 
@@ -32,6 +35,11 @@ const Login = () => {
             [name]: value,
         })
     }
+    // cookies.get.jwt ? history.push("/postList") : "" 
+    
+    // if(cookies.get("token") !== ""){
+    //     history.push("/postList");
+    // }
 
 
     const login = () => {
@@ -55,7 +63,10 @@ const Login = () => {
             is_flex="true"
             width="300px"
             height="400px"
-            margin="190px auto"
+            position="absolute"
+            top="46%"
+            left="50%"
+            transform="translate(-50% , -50%)"
             padding="30px 0 0 0"
             direction="column"
             justify="space-between"
