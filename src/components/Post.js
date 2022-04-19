@@ -19,6 +19,7 @@ import Modal from "../elements/Modal";
 
 
 const Post = (props) => {
+  // console.log(props);
   const dispatch = useDispatch();
 
   // 좋아요
@@ -31,9 +32,9 @@ const Post = (props) => {
   //모달 - 게시글 삭제
   const deletePost = () => {
     alert("삭제가 완료되었습니다!")
-    //dispatch
+    dispatch(postActions.deletePostDB(props.id))
     setMoreInfo(false);
-    history.replace("/postList"); //안되는듯
+    //history.replace("/postList"); //안되는듯
     // }).then((willDelete) => {
     //   if (willDelete) {
     //     dispatch(deletePostDB(postId));
@@ -45,10 +46,10 @@ const Post = (props) => {
     // });
   };
 
-
-  const plz = async () => {
+  const plz = () => {
     // await dispatch(commentActions.getCommentDB(props.post_id));
-    //await dispatch(postActions.getPostOneDB(props.id));
+    // console.log(props.id)  //확인 완
+     dispatch(postActions.getPostOneDB(props.id));
     history.push(`/detail/${props.id}`);
   };
   //const localData = localStorage.getItem("MY_LOCAL");
@@ -73,11 +74,11 @@ const Post = (props) => {
     setLike(!like);
     //dispatch(postActions.like(like));
   };
-  React.useEffect(() => {
+  // React.useEffect(() => {
     // if (like_list[props.idx] === true) {
     //   setLike(true);
     // }
-  }, []);
+  // }, []);
 
   return (
     <Grid
@@ -91,9 +92,9 @@ const Post = (props) => {
       {/* 1번 */}
       <UserBox width="100%">
         <Userinfo>
-          <Image shape="circle" src="https://i.pinimg.com/originals/14/f5/9b/14f59b8c01290e9d2df0a39fbbc7679a.jpg" />
-          <Text bold padding="0 0 0 10px" fontWeight="bold">
-            {props.author}
+          <Image shape="circle" src={"https://i.pinimg.com/originals/14/f5/9b/14f59b8c01290e9d2df0a39fbbc7679a.jpg"} />
+          <Text bold padding="0 0 0 10px">
+            {props.user.username}
           </Text>
         </Userinfo>
 
@@ -149,7 +150,7 @@ const Post = (props) => {
       <Grid>
           <PostImage
             // src={props.upload[0].path}
-            src={props.img}
+            src={props.imgUrl}
           />
       </Grid>
 
@@ -167,7 +168,7 @@ const Post = (props) => {
 
       {/* 4번   */}
       <Grid padding="0 10px" margin="0" height="25px">
-        <Text bold> 좋아요 0 개</Text>
+        <Text bold> 좋아요 {props.likeCount} 개</Text>
         {/* {props.likes} */}
       </Grid>
 
@@ -175,11 +176,10 @@ const Post = (props) => {
       <Grid padding="0" flex alignItems="center" height="25px">
         {/* <Ellipsis ref={contentRef}> */}
           <Text bold float="left" padding="0 0 0 10px" width="100px">
-            {/* {props.nickname} */}
-            nickname
+          {props.user.username}
           </Text>
           {/* {props.content} */}
-          <Text width="100%" margin="0" padding="0">내용내용</Text>
+          <Text width="100%" margin="0" padding="0">{props.contents}</Text>
         {/* </Ellipsis> */}
 
         {/* <EButton onClick={moreClick}>더보기</EButton> */}
@@ -195,10 +195,11 @@ const Post = (props) => {
           border="none"
           background="none"
         >
-          {/* {props.comments.length > 0
-            ? `댓글 ${props.comments.length}개 모두보기`
-            : "댓글입니다"} */}
-            댓글 0개 더보기
+          {props.comments && props.comments.length > 0
+            ? `댓글 ${props.commentsList.length}개 모두보기`
+            : "댓글 0개 모두보기"
+          }
+            {/* 댓글 {props.commentsList.length}개 더보기 */}
         </EButton>
       </Grid>
       {/* 7번 */}
