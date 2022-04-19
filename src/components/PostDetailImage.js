@@ -13,9 +13,10 @@ const PostDetailImage = (props) => {
           <Image
             shape="rectangle"
             // src={postOne.result.upload[0].path}
-            src="https://i.pinimg.com/564x/9b/10/2b/9b102bf530db433cc4a0f932e5482b02.jpg"
+            src={props.imgUrl}
             size="100%"
             width="100%"
+            height="650px"
           />
       </Grid>
     </Grid>

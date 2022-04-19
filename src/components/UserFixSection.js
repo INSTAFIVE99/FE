@@ -67,7 +67,7 @@ const UserFixSection = (props) => {
           <li>도움말</li>
           <li>홍보 센터</li>
           <li>API</li>
-          <li>채용 정보</li>
+
           <li>개인정보처리방침</li>
           <li>약관</li>
           <li>위치</li>

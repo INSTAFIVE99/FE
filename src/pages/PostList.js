@@ -9,14 +9,36 @@ import InfoModal from "../components/InfoModal";
 import { history } from "../redux/configureStore";
 import Post from "../components/Post";
 
+import Cookies from "universal-cookie";
+import Header from "../components/Header";
+const cookies = new Cookies();
+
 
 const PostList = () => {
     //const post_list = useSelector((state) => state.post.posts);
 
+    if(!cookies.get("myJwt")){
+      history.replace("/")
+    }
+    
     const dispatch = useDispatch();
     const post_list = useSelector((state) => state.post.list);
+    //console.log(post_list)
 
     const [moreInfo, setMoreInfo] = useState(false);
+
+    React.useEffect(() => {
+    
+      dispatch(postActions.getPostDB());
+    
+  }, []);
+
+  // if(cookies.get("myJwt")){
+  //   history.push("/postList")
+  // } else {
+  //   history.replace("/");
+  // }
+
 
     const deletePost = () => {
       alert("삭제가 완료되었습니다!")
@@ -44,16 +66,18 @@ const PostList = () => {
     //   }
     // }, []);
 
-    React.useEffect(() => {
-     dispatch(postActions.getPostDB());
-    }, []);
+   
+
   
     return (
+      <>
+      <Header></Header>
       <MainBox>
         <Section>
           <PostBox>
           {post_list.map((p, idx) => {
             return <Post key={idx} {...p} />;
+            
           })}
 
           
@@ -98,6 +122,7 @@ const PostList = () => {
           </AsideBox>
         </Section>
       </MainBox>
+      </>
     );
 
 }

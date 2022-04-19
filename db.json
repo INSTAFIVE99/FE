@@ -1,7 +1,7 @@
 {
   "posts": [
     {
-      "id": 1,
+      "id": 100,
       "title": "json-server",
       "author": "typicode",
       "img" : "https://i.pinimg.com/564x/9b/10/2b/9b102bf530db433cc4a0f932e5482b02.jpg"
@@ -14,34 +14,40 @@
       
     },
     {
+      "id": 3,
+      "title": "json-server",
+      "author": "typicode",
+      "img" : "https://i.pinimg.com/564x/d9/8d/15/d98d15ce99a4e6583360e2030f00fc11.jpg"
+    },
+    {
+      "id": 4,
+      "title": "두번째재재재",
+      "author": "세컨드드드드",
+      "img" : "https://i.pinimg.com/564x/d9/8d/15/d98d15ce99a4e6583360e2030f00fc11.jpg"
+    },
+    {
+      "id": 5,
+      "title": "json-server",
+      "author": "typicode",
+      "img" : "https://i.pinimg.com/564x/d9/8d/15/d98d15ce99a4e6583360e2030f00fc11.jpg"
+    },
+    {
+      "id": 6,
+      "title": "두번째재재재",
+      "author": "세컨드드드드",
+      "img" : "https://i.pinimg.com/564x/d9/8d/15/d98d15ce99a4e6583360e2030f00fc11.jpg"
+    },
+    {
       "id": 1,
       "title": "json-server",
-      "author": "typicode"
+      "author": "typicode",
+      "img" : "https://i.pinimg.com/564x/d9/8d/15/d98d15ce99a4e6583360e2030f00fc11.jpg"
     },
     {
       "id": 2,
       "title": "두번째재재재",
-      "author": "세컨드드드드"
-    },
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
-      "id": 2,
-      "title": "두번째재재재",
-      "author": "세컨드드드드"
-    },
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
-      "id": 2,
-      "title": "두번째재재재",
-      "author": "세컨드드드드"
+      "author": "세컨드드드드",
+      "img" : "https://i.pinimg.com/564x/d9/8d/15/d98d15ce99a4e6583360e2030f00fc11.jpg"
     }
   ],
 

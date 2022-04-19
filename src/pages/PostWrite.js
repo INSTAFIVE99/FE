@@ -11,6 +11,10 @@ import { actionCreators as postActions } from "../redux/modules/post";
 
 import { history } from "../redux/configureStore";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+const username = cookies.get("username")
+
 const PostWrite = () => {
   const dispatch = useDispatch();
 
@@ -29,13 +33,15 @@ const PostWrite = () => {
       document.body.classList.remove("overflowHidden");
     };
 
-    
   }, []);
 
   //---- 게시글 추가 ----
   const addPost = () => {
     dispatch(postActions.addPostDB({contents : contents, file : file}));
+  
   };
+
+
   return (
     <>
       {/* 배경 */}
@@ -118,7 +124,7 @@ const PostWrite = () => {
                   src="http://www.goingmary.co.kr/shop/data/images/icons/basic_user.png"
                 />
                 <Text bold padding="0 0 0 10px" fontWeight="bold">
-                  닉네임
+                  {username}
                 </Text>
               </Grid>
 

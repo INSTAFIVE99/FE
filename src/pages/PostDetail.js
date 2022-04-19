@@ -18,15 +18,19 @@ import PostDetailImage from "../components/PostDetailImage";
 import PostDetailContent from "../components/PostDetailContent"
 
 
-const Detail = () => {
+const Detail = (props) => {
   const dispatch = useDispatch();
-  const params = useParams();
-  const post_id = params.post_id;
+  // const params = useParams();
+  // const post_id = params.post_id;
+  const post_id = props.match.params.id;
+  // console.log("디테일페이지 id", post_id);
+  const postOne = useSelector((state) => state.post.target);
 
-  //body 스크롤 멈추기
+
   React.useEffect(() => {
     //dispatch(commentActions.getCommentDB(post_id));
-    //dispatch(postActions.getPostOneDB(post_id));
+    dispatch(postActions.getPostOneDB(post_id));
+
     document.body.classList.add("overflowHidden");
     window.scrollTo(0, 0);
     return () => {
@@ -34,11 +38,8 @@ const Detail = () => {
     };
   }, []);
 
-  const posts_info = useSelector((state) => {
-    return state.post.target;
-  });
 
-  const preview = useSelector((state) => state.image.preview);
+  //const preview = useSelector((state) => state.image.preview);
 
 
   return (
@@ -51,11 +52,12 @@ const Detail = () => {
       top="0"
       left="0"
       zIndex="11"
+      is_center
     >
       <Grid
         className={"modalcont"}
         width="1060px"
-        height="80vh"
+        height="650px"
         margin="100px auto 0 auto"
         background="#fff"
         radius="10px"
@@ -65,10 +67,10 @@ const Detail = () => {
         icon={faXmark}
           style={{
             position: "absolute",
-            top: "40px",
+            top: "30px",
             right: "10px",
             color: "#fff",
-            height: "50",
+            height: "30px",
             fontSize: "100px",
           }}
           onClick={() => {
@@ -77,8 +79,9 @@ const Detail = () => {
         />
 
 
-        <PostDetailImage />
-        <PostDetailContent></PostDetailContent>
+        <PostDetailImage imgUrl={postOne.imgUrl}/>
+        <PostDetailContent id={post_id}></PostDetailContent>
+       
       </Grid>
     </Grid>
   );

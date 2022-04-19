@@ -3,6 +3,9 @@ import { produce } from "immer";
 import { apis } from "../../shared/axios";
 import axios from "axios";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 //1.
 const SET_POST = "SET_POST";
 const SET_DETAIL = "SET_DETAIL";
@@ -24,11 +27,21 @@ const initialState = {
 };
 
 const initialPost = {
-    username: "username",
-    content: "내용내용",
-    liked: 0,
+    commentsList : [],
+    contents: "내용내용",
+    createAt:"",
+    id:0,
     imageUrl: "",
-    comment: [],  //체크 필요
+    likeCount: 0,
+    likeList : [],
+    modifiedAt:"",
+    user:{
+      id:0,
+      username: "username",
+      nickname: "nickname",
+      password: "",
+    }
+  //[ {"userid", "comment"},  ...]
 };
 
 //4.
@@ -39,6 +52,7 @@ export const getPostDB =
     try {
       const { data } = await apis.postGet();
       dispatch(setPost(data));
+      //console.log(data)
     } catch (e) {
       console.log(e);
     }
@@ -50,10 +64,10 @@ export const getPostDB =
   async (dispatch, getState, { history }) => {
     try {
       const { data } = await apis.postOne(id);
-
     //   let resultLiked = data.result.liked;
     //   dispatch(setLike(resultLiked));
-       dispatch(setPostOne(data.result));
+    //  console.log(data);
+       dispatch(setPostOne(data));
     } catch (e) {
       console.log("디테일 가져오기 실패");
     }
@@ -61,8 +75,17 @@ export const getPostDB =
 
 //게시글 ADD
 const addPostDB = (post) => {
-  console.log(post); //확인 완
-  const token = sessionStorage.getItem("token"); //토큰 가져오기
+  //console.log(post); //확인 완
+  const token = cookies.get("myJwt");
+  //console.log("Authorization", `${token}`);
+  // console.log(post.file)
+  // console.log(post.contents)
+
+  const _post = {
+    ...initialPost,
+    contents : post.contents,
+    imageUrl : post.file
+  }
 
   return async function (dispatch, getState, { history }) {
     //   console.log(token);
@@ -72,31 +95,33 @@ const addPostDB = (post) => {
     form.append(
       "requestDto", ///이름 확인
       new Blob([JSON.stringify({ contents: post.contents })], {
-        //dictionary 타입, contents : ? 확인
         type: "application/json",
       })
+    // form.append("requestDto", post.contents);
     );
 
-    console.log("form은 ", form); //이게 맞나..? 확인 완
+    // console.log(form);
 
-    
     await axios({
       method: "post",
-      url: "~/api/posts/write",  //배포 url까지 추가해야함!
+      url: "http://13.124.136.171/api/posts/write",
       data: form,
       headers: {
         "Content-Type": "multipart/form-data",
-        Authorization: `${token}`, //형식 확인
+        "Authorization": `${token}` //형식 확인
       },
     })
       .then((response) => {
-        console.log(response, "게시글 ADD 성공");
-        dispatch(addPost(post));
+        //console.log(response, "게시글 ADD 성공");
+        dispatch(addPost(_post));
+        //console.log(post)
         history.replace("/postList");
       })
       .catch((err) => {
-        console.log(err, "게시글 ADD 실패!!!");
+        console.log(err, "posting 실패");
       });
+
+
   };
 };
 
@@ -105,7 +130,7 @@ const addPostDB = (post) => {
 
 
 //게시글 DELETE
-const deletePostDB = (postId, todoNum) => {
+const deletePostDB = (postId) => {
     return async function (dispatch, getState, { history }) {
       const token = sessionStorage.getItem("token");
 
@@ -116,7 +141,7 @@ const deletePostDB = (postId, todoNum) => {
     const _post_list = getState().post.list;
   
      await axios
-        .delete(`/api/posts/delete/${postId}`, {
+        .delete(`http://13.124.136.171/api/posts/delete/${postId}`, {
           headers: { 
             "Authorization": `${token}`, 
           },
@@ -127,7 +152,7 @@ const deletePostDB = (postId, todoNum) => {
           });
   
           dispatch(deletePost(post_idx));
-          history.replace("/");
+          window.location.reload("/postList");
         })
         .catch((err) => {
           console.log("게시글 삭제 실패!!!!", err);
@@ -146,7 +171,9 @@ export default handleActions(
 
     [SET_DETAIL]: (state, action) =>
       produce(state, (draft) => {
+
         draft.target = action.payload.post_one;
+        console.log(action.payload);
     }),
 
     [ADD_POST]: (state, action) =>
