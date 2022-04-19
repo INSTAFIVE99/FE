@@ -33,7 +33,6 @@ function App() {
         <Header></Header>
         
           <ConnectedRouter history={history}>
-            {/* <Route path="/" exact component={Login} /> */}
              <Route path="/" exact component={Login}/>
              <Route path="/signUp" exact component={SignUp}/>
 
@@ -41,11 +40,7 @@ function App() {
              <Route path="/postImage" component={PostImage} />
              <Route path="/postAdd" component={PostWrite} />
              <Route path="/detail/:id" exact component={PostDetail} />
-
              <Route path="/modifyFileUpload/:id" exact component={ModifyImage} />
-             
-
-            {/* <Route path="/modify/:id" exact component={PostWrite} /> */}
           </ConnectedRouter>
     </React.Fragment>
   );
