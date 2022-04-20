@@ -1,45 +1,27 @@
 import React from "react";
 import styled from "styled-components";
-import { useState } from "react";
+
 import { Grid, Text, Image } from "../elements/index";
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
 import { actionCreators as imageActions } from "../redux/modules/image";
-// import { history } from "../redux/configureStore";
+
 
 const FileUpload = (props) => {
   const dispatch = useDispatch();
   const fileInput = React.useRef();
 
-  const [fileVideos, setFileVideo] = React.useState("");
-
-  //fileVideos 값이 있을때 실행하기
-//   React.useEffect(() => {
-//     if (!fileVideos) {
-//       return;
-//     }
-
-//     dispatch(imageActions.setPreviewVideo(fileVideos));
-//   }, [fileVideos]);
 
   //파일 선택
 const selectFile = (e) => {
     //선택된 파일
     const file = fileInput.current.files[0];
 
-    // //파일타입
-    // const fileType = file.type;
 
     //FileReader 객체 생성
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
-    //createObjectURL 비디오 url
-    // const videourl = URL.createObjectURL(file);
-    // setFileVideo(videourl);
-
-    // if (fileType.includes("video/")) {
-    // }
 
     //파일 로드 완료시
     reader.onloadend = (e) => {

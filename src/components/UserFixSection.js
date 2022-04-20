@@ -2,12 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import { Button, Grid, Image, Text } from "../elements/index";
-import { useDispatch } from "react-redux";
-import { history } from "../redux/configureStore";
+
+import Cookies from "universal-cookie";
 
 const UserFixSection = (props) => {
-  const dispatch = useDispatch();
-  //const localData = localStorage.getItem("MY_LOCAL");
+  const cookies = new Cookies();
 
   const [name, setName] = useState([
     "최서라",
@@ -17,11 +16,6 @@ const UserFixSection = (props) => {
     "권규민",
   ]);
 
-//   const logout = () => {
-    // localStorage.removeItem("MY_LOCAL");
-    // delToken("login");
-    // history.replace("/");
-//   };
   return (
     <React.Fragment>
       <UserBox width="100%">
@@ -29,9 +23,7 @@ const UserFixSection = (props) => {
           <Image shape="circle" src={props.src} size="50" />
           <Grid flex justify="space-between">
             <TextBox>
-              <Text bold>
-                {/* {localData} */} Seora
-              </Text>
+              <Text bold>{cookies.get("username")}</Text>
             </TextBox>
             <SideButton>로그아웃</SideButton>
           </Grid>
@@ -48,7 +40,7 @@ const UserFixSection = (props) => {
         {name.map((n, idx) => {
           return (
             <Userinfo key={idx}>
-              <Image shape="circle" src={props.src}/>
+              <Image shape="circle" src={props.src} />
               <Grid flex justify="space-between">
                 <TextBox>
                   <Text bold fontWeight="bold" textAlign="center">
@@ -73,7 +65,6 @@ const UserFixSection = (props) => {
           <li>위치</li>
           <li>인기 계정</li>
           <li>해시태그</li>
-
         </ul>
         <p>© 2022 CLONE FIVE</p>
       </Footer>
@@ -98,13 +89,13 @@ const Footer = styled.div`
   & ul {
     padding: 20px 16px 10px 0px;
     display: inline-block;
-    list-style:none;
+    list-style: none;
   }
   & li {
     float: left;
     font-size: 11px;
     padding: 0 2px;
-    color: #B2B1B9;
+    color: #b2b1b9;
     ::after {
       content: " ·";
     }
@@ -112,20 +103,19 @@ const Footer = styled.div`
   & p {
     display: inline-block;
     font-size: 11px;
-    color: #B2B1B9;
+    color: #b2b1b9;
     padding: 0 16px;
   }
 `;
 
 const SideButton = styled.button`
-  all : unset;
-  font-size : 12px;
-  color : #1089FF;
-  font-weight : 700;
-
+  all: unset;
+  font-size: 12px;
+  color: #1089ff;
+  font-weight: 700;
 `;
 
 const TextBox = styled.div`
-  margin-left : 10px;
+  margin-left: 10px;
 `;
 export default UserFixSection;
