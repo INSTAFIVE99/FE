@@ -1,34 +1,25 @@
 import React from "react";
-import styled from "styled-components";
-import { Grid, Text, Input, Button } from "../elements/index";
-import { useParams } from "react-router-dom";
+import { Grid } from "../elements/index";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { faFaceSmileWink } from "@fortawesome/free-regular-svg-icons";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 import { history } from "../redux/configureStore";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
-// import { commentActions } from "../redux/module/comment";
 
 import PostDetailImage from "../components/PostDetailImage";
-import PostDetailContent from "../components/PostDetailContent"
-
+import PostDetailContent from "../components/PostDetailContent";
 
 const Detail = (props) => {
   const dispatch = useDispatch();
-  // const params = useParams();
-  // const post_id = params.post_id;
+
   const post_id = props.match.params.id;
-  // console.log("디테일페이지 id", post_id);
+
   const postOne = useSelector((state) => state.post.target);
 
-
   React.useEffect(() => {
-    //dispatch(commentActions.getCommentDB(post_id));
     dispatch(postActions.getPostOneDB(post_id));
 
     document.body.classList.add("overflowHidden");
@@ -37,10 +28,6 @@ const Detail = (props) => {
       document.body.classList.remove("overflowHidden");
     };
   }, []);
-
-
-  //const preview = useSelector((state) => state.image.preview);
-
 
   return (
     <Grid
@@ -64,7 +51,7 @@ const Detail = (props) => {
         flex
       >
         <FontAwesomeIcon
-        icon={faXmark}
+          icon={faXmark}
           style={{
             position: "absolute",
             top: "30px",
@@ -78,10 +65,11 @@ const Detail = (props) => {
           }}
         />
 
-
-        <PostDetailImage imgUrl={postOne.imgUrl}/>
-        <PostDetailContent id={post_id}></PostDetailContent>
-       
+        <PostDetailImage imgUrl={postOne.imgUrl} />
+        <PostDetailContent
+          id={post_id}
+          likesList={postOne.likesList}
+        ></PostDetailContent>
       </Grid>
     </Grid>
   );
