@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Grid, Text, Input, Button } from "../elements/index";
 import { actionCreators as postActions } from "../redux/modules/post";
+import { __AddComment } from "../redux/module/__comment";
 // import { commentActions } from "../redux/modules/comment";
 import { history } from "../redux/configureStore";
 
@@ -84,6 +85,23 @@ const DetailCont = (props) => {
   //     dispatch(postActions.deleteCommentDB(post_id, comment_id));
   //   };
 
+const ControlComments = () => {
+
+  const [comments, setcomments] = useState({
+    nickname: "", comment: ""
+  });
+  const [comment, setcomment] = useState("");
+
+}
+
+const addComment = () => {
+
+};
+
+
+
+
+
   return (
     <Grid width="37%" borderL="1px solid #d9d9d9">
       <Grid flex direction="column">
@@ -126,13 +144,10 @@ const DetailCont = (props) => {
                 •••
               </Text>
             }
-              
-            
-
           </Grid>
         </Grid>
 
-        {/* 상단 2 (content) */}
+        {/* 상단 2 (content,댓글) */}
         <ContentBox>
           <Grid flex>
             <Grid width="12%">
@@ -153,68 +168,26 @@ const DetailCont = (props) => {
               </TextBox>
             </Grid>
           </Grid>
-          {/* <Grid width="100%" margin="20px 0 10px 45px"> */}
-            {/* <Text>{`${date}전`}</Text> */}
             <Text color="silver" size="13px" height="20px">몇시간 전</Text>
 
-
-          {/* </Grid> */}
-
-          
-                      {/* 댓글 창 임시 */}
-                      <CommentList>댓글댓글1111</CommentList>
-          {/* {comment_info.map((l, idx) => {
-            const createdAt = comment_info[idx].createdAt;
-            const today = returnGapDate(new Date(), createdAt);
-            return (
-              <div key={idx}>
-                <Grid flex>
-                  <Grid width="15%">
-                    <Logo src={icon09}></Logo>
-                  </Grid>
-                  <Grid flex width="75%" items="center">
-                    <Grid flex width="auto">
-                      <Text size="14px" weight="900">
-                        {comment_info[idx].nickname}
-                      </Text>
-                    </Grid>
-                    <Text margin="0 0 0 5px" width="auto%">
-                      {comment_info[idx].comment}
-                    </Text>
-                  </Grid>
-                </Grid>
-                <Grid width="100%" margin="0 0 0 59px">
-                  <Text>{`${today}전`}</Text>
-                </Grid>
-              </div>
-            );
-          })} */}
+            {/* 댓글 올라오는 창 */}
+            <CommentList>
+              <Grid
+                is_flex="true"
+                direction="row"
+                justify="flex-start"
+                alignItems="center"
+              >
+                <Text
+                margin="0 8px 0 0"
+                bold="600"
+                >username</Text>
+                <Text>commentasdlk;</Text>
+              </Grid>
+            </CommentList>
         </ContentBox>
 
-        {/* 하단 아이콘 묶음 */}
-        <Grid height="20px">
-          <Grid padding="30px 16px" height="15px">
-            {/* <img src={icon01} alt="headerIcon_01" /> */}
-            {/* {!like ? (
-              <Icon src={icon08} alt="headerIcon_08" onClick={toggleLike} />
-            ) : (
-              <Icon src={icon05} alt="headerIcon_05" onClick={toggleLike} />
-            )} */}
-            <Icon src={noheart} alt="icon06" />
-            <IconComment src={comment} alt="headerIcon_02" />
-            <IconComment src={dm} alt="dmicon" />
-          </Grid>
-
-          {/* <Grid padding="5px 16px" height="25px"> */}
-            {/* <Text weight="900">좋아요 {posts_info.result.likes}개</Text> */}
-            {/* <Text bold>좋아요 {postOne?.likeCount}개</Text> */}
-          {/* </Grid> */}
-          <Grid padding="0 15px" height="10px">
-            {/* <Text size="10px">{`${date}전`}</Text> */}
-            <Text color="silver" size="12px">몇시간 전</Text>
-          </Grid>
-        </Grid>
-
+            {/* 댓글 남기기 */}
         <Grid flex margin="100px 0">
           <CommentBox>
             <IconBox>
@@ -241,16 +214,16 @@ const DetailCont = (props) => {
                 color="#8e8e8e"
                 // ref={comment}
               /> */}
-              <CommentInput placeholder="댓글달기..."></CommentInput>
-
+              <CommentInput
+                placeholder="댓글달기...">
+              </CommentInput>
               <Button
                 text="게시"
                 backgroundColor="transparent"
                 broder
                 color="#cde6fd"
                 width="40px"
-                
-                // _onClick={addComment}
+                _onClick={addComment}
               ></Button>
             </Grid>
           </CommentBox>
@@ -299,6 +272,7 @@ const CommentInput = styled.input`
   &:focus {
     outline : none;
     border : none;
+    color : blue;
   }
 `
 

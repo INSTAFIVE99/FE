@@ -30,75 +30,66 @@ const SignUp = () => {
   const signUp = () => {
     if (!isAlphanumeric(username) || !isLength(username, { min: 4, max: 12 })) {
       window.alert("아이디는 4~12자의 영문 대소문자와 숫자를 입력해주세요.");
-    }
-
-    if (!isAlphanumeric(nickname) || !isLength(nickname, { min: 4, max: 12 })) {
+    } else if (
+      !isAlphanumeric(nickname) ||
+      !isLength(nickname, { min: 4, max: 12 })
+    ) {
       window.alert("닉네임은 4~12자의 영문 대소문자와 숫자를 입력해주세요.");
-    }
-
-    if (!isStrongPassword(password) || !isLength(password, { min: 8, max: 16 })) {
+    } else if (
+      !isStrongPassword(password) ||
+      !isLength(password, { min: 8, max: 16 })
+    ) {
       window.alert(
         "비밀번호는 8~16자의 영문 대소문자, 숫자 그리고 기호를 포함합니다."
       );
-    }
-
-    if (password !== validPassword) {
+    } else if (password !== validPassword) {
       window.alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-    };
-
-    if (username === "" || nickname === "" || password === "" || validPassword === ""){
+    } else if (
+      username === "" ||
+      nickname === "" ||
+      password === "" ||
+      validPassword === ""
+    ) {
       window.alert("빈칸을 채워주세요.");
-      return;
-    };
-
-    dispatch(
-      __SignUp({
-        username: username,
-        nickname: nickname,
-        password: password,
-      })
-    );
+    } else {
+      dispatch(
+        __SignUp({
+          username: username,
+          nickname: nickname,
+          password: password,
+        })
+      );
+    }
   };
 
-// 중복확인 체크(username, nickname)
-// const dupCheck = () => {
-  
-//   const [checkUserName, setCheckUserName] = useState("");
-//   const [checkNickName, setCheckNickName] = useState("");
- 
+  // 중복확인 체크(username, nickname)
+  // const dupCheck = () => {
 
+  //   const [checkUserName, setCheckUserName] = useState("");
+  //   const [checkNickName, setCheckNickName] = useState("");
 
-//        if(isNickName === true){
-//         return(
-//       <Text
-//         color="red"
-//         size="8px"
-//         >
-//         사용가능한 닉네임 입니다.
-//       </Text>)
-//     } else if(isNickName === false){
-//       return(
-//         <Text
-//         color="lightgreen"
-//         size="8px"
-//         >
-//         이미 사용중인 닉네임 입니다.
-//         </Text>
-//       )
-//     };
-// }
-
-  
-
-
-
-
-
+  //        if(isNickName === true){
+  //         return(
+  //       <Text
+  //         color="red"
+  //         size="8px"
+  //         >
+  //         사용가능한 닉네임 입니다.
+  //       </Text>)
+  //     } else if(isNickName === false){
+  //       return(
+  //         <Text
+  //         color="lightgreen"
+  //         size="8px"
+  //         >
+  //         이미 사용중인 닉네임 입니다.
+  //         </Text>
+  //       )
+  //     };
+  // }
 
   // dispatch(__unCheck({ username: checkUserName }));
   // dispatch(__nnCheck({ nickName: checkNickName }));
-
- 
 
   // const howUserName = () =>{
   //   const userNameDebounce = _.debounce((value) => {} )
@@ -142,7 +133,6 @@ const SignUp = () => {
   //     )
   //   };
   // };
-
 
   // dispatch(__nnCheck({nickname: nickname}));
 
@@ -346,42 +336,46 @@ const SignUp = () => {
           </form>
         </Grid>
         <Grid
-        margin="10px auto"
-        width="300px"
-        height="50px"
-        border="1px solid lightgray"
-        is_flex="true"
-        direction="row"
-        justify="center"
-        alignItems="center"
-      >
-        <Grid
-          margin="0 auto"
-          width="60%"
+          position="absolute"
+          top="106%"
+          left="50%"
+          transform="translate(-50% , -50%)"
+          // margin="0 auto"
+          width="298px"
           height="50px"
+          border="1px solid lightgray"
           is_flex="true"
           direction="row"
           justify="center"
           alignItems="center"
         >
-          <Text size="12px">계정이 있으신가요?</Text>
-          <Button
-            radius="3px"
-            fontSize="12px"
-            width="30%"
-            height="30px"
-            margin="10 0"
-            padding=""
-            backgroundColor="white"
-            color="skyblue"
-            _onClick={() => history.push("/")}
+          <Grid
+            margin="0 auto"
+            width="60%"
+            height="50px"
+            is_flex="true"
+            direction="row"
+            justify="center"
+            alignItems="center"
           >
-            로그인
-          </Button>
+            <Text size="12px">계정이 있으신가요?</Text>
+            <Button
+              radius="3px"
+              fontSize="12px"
+              width="30%"
+              height="30px"
+              margin="10 0"
+              padding=""
+              backgroundColor="white"
+              color="skyblue"
+              _onClick={() => history.push("/")}
+            >
+              로그인
+            </Button>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
-  </Grid>
   );
 };
 

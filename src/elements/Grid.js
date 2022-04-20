@@ -109,7 +109,6 @@ const GridBox = styled.div`
   ${(props) => (props.position ? `position: ${props.position};` : "")}
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
   ${(props) => (props.wrap ? `flex-wrap: wrap;` : "")}
-  ${(props) => (props.justify ? `justify-content: ${props.justify};` : "")}
   ${(props) => (props.direction ? `flex-direction: ${props.direction};` : "")}
   ${(props) => (props.items ? `align-items: ${props.items};` : "")}
   ${(props) => (props.transform ? `transform: ${props.transform};` : "")}
@@ -130,7 +129,7 @@ const GridBox = styled.div`
       : ""}
   ${(props) => (props.flex ? `display: flex; ` : "")}
   ${(props) => (props.alignItems ? `align-items: ${props.alignItems};` : "")} 
-  
+  ${(props) => (props.justify ? `justify-content: ${props.justify};` : "")}
   ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "")}
   ${(props) => (props.overflow ? `overflow: scroll;` : "")}
 `;
