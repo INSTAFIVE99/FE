@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Grid, Text, Button } from "../elements/index";
 import { actionCreators as postActions } from "../redux/modules/post";
+
+import { __AddComment } from "../redux/module/__comment";
+
 import { history } from "../redux/configureStore";
 
 import Cookies from "universal-cookie";
@@ -25,6 +28,20 @@ const DetailCont = (props) => {
   React.useEffect(() => {
     dispatch(postActions.getPostOneDB(post_id));
   }, []);
+
+
+const ControlComments = () => {
+
+  const [comments, setcomments] = useState({
+    nickname: "", comment: ""
+  });
+  const [comment, setcomment] = useState("");
+
+}
+
+const addComment = () => {
+
+};
 
   return (
     <Grid width="37%" borderL="1px solid #d9d9d9">
@@ -71,7 +88,7 @@ const DetailCont = (props) => {
           </Grid>
         </Grid>
 
-        {/* 상단 2 (content) */}
+        {/* 상단 2 (content,댓글) */}
         <ContentBox>
           <Grid flex>
             <Grid width="12%">
@@ -90,12 +107,25 @@ const DetailCont = (props) => {
               </TextBox>
             </Grid>
           </Grid>
-
-          <Text color="silver" size="13px" height="20px">
-            몇시간 전
-          </Text>
+            <Text color="silver" size="13px" height="20px">몇시간 전</Text>
+            {/* 댓글 올라오는 창 */}
+            <CommentList>
+              <Grid
+                is_flex="true"
+                direction="row"
+                justify="flex-start"
+                alignItems="center"
+              >
+                <Text
+                margin="0 8px 0 0"
+                bold="600"
+                >username</Text>
+                <Text>commentasdlk;</Text>
+              </Grid>
+            </CommentList>
         </ContentBox>
 
+            {/* 댓글 남기기 */}
         <Grid flex margin="100px 0">
           <CommentBox>
             <IconBox>
@@ -113,15 +143,16 @@ const DetailCont = (props) => {
             </IconBox>
 
             <Grid flex justify="space-between" width="377px" margin="0">
-              <CommentInput placeholder="댓글달기..."></CommentInput>
 
+              <CommentInput placeholder="댓글달기..."></CommentInput>
               <Button
                 text="게시"
                 backgroundColor="transparent"
                 broder
                 color="#cde6fd"
                 width="40px"
-                // _onClick={addComment}
+                _onClick={addComment}
+
               ></Button>
             </Grid>
           </CommentBox>
@@ -158,8 +189,8 @@ const CommentInput = styled.input`
   color: silver;
 
   &:focus {
-    outline: none;
-    border: none;
+    outline : none;
+    border : none;
   }
 `;
 

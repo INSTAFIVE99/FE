@@ -37,13 +37,13 @@ const nnCheck = (payload) => {
            
 // };
 
-export const __nnCheck =
-  (nnCheck) => async (dispatch, getState, { history }) =>
-  {
-    console.log(nnCheck);
-    await axios.post("http://13.124.136.171/api/user/nameCheck", nnCheck)
-      return
-};
+// export const __nnCheck =
+//   (nnCheck) => async (dispatch, getState, { history }) =>
+//   {
+//     console.log(nnCheck);
+//     await axios.post("http://13.124.136.171/api/user/nameCheck", nnCheck)
+//       return
+// };
 
 
 // {error code: 600-아이디 중복}, 601-닉네임 중복, 603-회원정보 없음, 604-토큰없음
