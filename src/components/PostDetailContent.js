@@ -40,16 +40,14 @@ const DetailCont = (props) => {
     history.replace(`/detail/${post_id}`)
 };
 
+  const username = cookies.get("username");
 
-  // const username = cookies.get("username");
-
-  //   console.log( "ehlasdlf", postOne.commentsList);
-  //   console.log("pc", postOne.commentsList);
+    console.log("pc", postOne.commentsList);
 
 
 
-  // const extendpostOne = postOne.commentsList;
-  // console.log("asdf213asdf",extendpostOne);
+  const extendpostOne = postOne.commentsList;
+  console.log("asdf213asdf",extendpostOne);
 
 
   
@@ -57,7 +55,7 @@ const DetailCont = (props) => {
   // const renderComments = ({postOne}) => {
     
   //   for (let i = 0; i < extendpostOne.length; i++) {
-  //     if(i > 0){
+  //     if(i > 0)
   //       console.log("첫번째", extendpostOne[i]);
   //       console.log("두번째", extendpostOne[i].username)
   //       return (
@@ -75,12 +73,6 @@ const DetailCont = (props) => {
   //   };
   // };
   // render 닫기
-
-  // const listedComments = (extendpostOne) => {
-  //   const extendpostOne = {
-  //     [],
-  //   }
-  // }
   
 
 
@@ -150,8 +142,16 @@ const DetailCont = (props) => {
           </Grid>
             <Text color="silver" size="13px" height="20px">몇시간 전</Text>
             {/* 댓글 올라오는 창 */}
-            <Grid>
+            <Grid
+              is_flex="true"
+              justify="flex-start"
+            >
              {/* {renderComments} */}
+             <Text
+              bold= "700"
+              margin="0 10px 0 0"
+             >imagine11</Text>
+             <Text>잘생겼어....</Text>
             </Grid>
         </ContentBox>
 

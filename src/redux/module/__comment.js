@@ -21,18 +21,6 @@ const initialState = {
     post_id: "",
 }
 
-// const AddComment = (payload) => {
-//     return { type:ADDCOMMENT, payload: payload}
-//     console.log("a1234", payload)
-// }
-
-// const UPLOADcomment = (payload) => {
-//     return { type:UPLOADCOMMENT, payload: payload}
-// }
-
-// const DelComment = (payload) => {
-//     return { type:DELCOMMENT, payload: payload}
-// }
 
 
 export const __AddComment = (contents, postId) => {
