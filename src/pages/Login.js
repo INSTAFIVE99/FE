@@ -13,7 +13,6 @@ import { get } from "lodash";
 
 const Login = () => {
 
-
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -82,7 +81,7 @@ const Login = () => {
             <Grid
                 boxSizing="border-box"
                 is_flex="true"
-                justify="space-around"
+                justify="space-between"
                 direction="column"
                 height="200px"
                 // border="5px solid red"
@@ -139,13 +138,17 @@ const Login = () => {
             alignItems="center"
             padding="0 60px"
             >
-                <Text>아이디가 없다면</Text>
+                <Text
+                size="12px"
+                color="gray"
+                margin="0 15px 0 0"
+                >아이디가 없다면</Text>
                 <Button
                 radius="3px"
                 fontSize="8px"
                 width="40%"
-                height="30px"
-                margin="10 0"
+                height="25px"
+                margin="10px 0"
                 padding=""
                 _onClick={() => history.push("/signUp")}
                 >가입하기</Button>

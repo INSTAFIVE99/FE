@@ -113,10 +113,10 @@ const DetailCont = (props) => {
                 justify="flex-start"
                 alignItems="center"
               >
-              <CommentsBox
+              {/* <CommentsBox
                 postId={post_id}
               >
-              </CommentsBox>
+              </CommentsBox> */}
 
 
               </Grid>
