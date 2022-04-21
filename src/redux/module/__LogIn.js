@@ -38,7 +38,11 @@ export const __Login =
           history.push("/postList");
           dispatch(login({ username: res.data.username, nickname: res.data.nickname }))
         })
-        .catch((error) => { console.log(error.response.data) })
+        .catch(
+          (error) => {
+            console.log(error.response.data);
+            window.alert("로그인에 실패하였습니다.");}
+          )
 
       
 

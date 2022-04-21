@@ -18,17 +18,10 @@ const CommentsBox = (props) => {
     const post_id = props.id;
 
     const postOne = useSelector((state) => state.post.target);
-    console.log("bbb", postOne)
-    console.log("bbb", postOne.user.nickname)
+ 
 
-    const usernickname = postOne.user.nickname;
+    const usernickname = postOne.contents;
 
-    console.log(props.postId)
-    // const post_ID = ;
-
-
-    
-    // 이거 어디서 어떻게 받아옴..
     const putcomment = useSelector(props=> props.comment);
     const putcommentId = useSelector(props=> props.post_id);
     

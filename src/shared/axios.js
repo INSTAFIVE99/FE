@@ -31,6 +31,5 @@ export const apis = {
     instance.post(`/api/comments/${postId}`, {contents: contents}),
 
   delComment: (postId) =>
-  instance.delete(`/api/comments/${postId}`),
-
+  instance.delete(`/api/comments/${postId}`)
 };
