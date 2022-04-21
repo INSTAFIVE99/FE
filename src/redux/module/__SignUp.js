@@ -1,8 +1,10 @@
 import axios from "axios";
 
 const SIGNUP = "signUp/SIGNUP";
-const UNCHECK = "unCheck/UNCHECK";
-const NNCHECK = "nnCheck/NNCheck";
+
+
+// const UNCHECK = "unCheck/UNCHECK";
+// const NNCHECK = "nnCheck/NNCheck";
 
 
 
@@ -15,34 +17,16 @@ const initialState = {
 
 
 
-function signUp(payload) {
-  return { type: SIGNUP, payload: payload}
-};
-
-const unCheck = (payload) => {
-  return { type:UNCHECK, payload: payload}
-};
-
-const nnCheck = (payload) => {
-  return { type:NNCHECK, payload: payload}
-};
-
-// re
-// export const __unCheck =
-//   (unCheck) => async (dispatch, getState, { history }) =>
-//     {
-//     console.log(unCheck);
-//     const dupUserName = await axios.post("http://13.124.136.171/api/user/IdCheck", unCheck)
-//       console.log(dupUserName);
-           
+// function signUp(payload) {
+//   return { type: SIGNUP, payload: payload}
 // };
 
-// export const __nnCheck =
-//   (nnCheck) => async (dispatch, getState, { history }) =>
-//   {
-//     console.log(nnCheck);
-//     await axios.post("http://13.124.136.171/api/user/nameCheck", nnCheck)
-//       return
+// const unCheck = (payload) => {
+//   return { type:UNCHECK, payload: payload}
+// };
+
+// const nnCheck = (payload) => {
+//   return { type:NNCHECK, payload: payload}
 // };
 
 

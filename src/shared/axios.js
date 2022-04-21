@@ -27,6 +27,10 @@ export const apis = {
 
   postLike: (postId) => instance.post(`/api/${postId}/like`),
 
+  addComment: (postId, contents) =>
+    instance.post(`/api/comments/${postId}`, {contents: contents}),
 
+  delComment: (postId) =>
+  instance.delete(`/api/comments/${postId}`),
 
 };

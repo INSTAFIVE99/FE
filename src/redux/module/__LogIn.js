@@ -60,8 +60,6 @@ export const auth = () => {
 }
 
 
-
-
 // reducer
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
