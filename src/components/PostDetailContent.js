@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { Grid, Text, Button } from "../elements/index";
+import { Grid, Text, Button, Input } from "../elements/index";
 import { actionCreators as postActions } from "../redux/modules/post";
 
 import { __AddComment } from "../redux/module/__comment";
+import {controlComment as commentWrite} from "../redux/module/__comment"
 
 import { history } from "../redux/configureStore";
+
+import CommentsBox from "./Comments";
 
 import Cookies from "universal-cookie";
 
@@ -30,17 +33,11 @@ const DetailCont = (props) => {
   }, []);
 
 
-const ControlComments = () => {
-
-  const [comments, setcomments] = useState({
-    nickname: "", comment: ""
-  });
   const [comment, setcomment] = useState("");
 
-}
-
-const addComment = () => {
-
+  const addComment = () => {
+    dispatch(__AddComment(comment, post_id));
+    history.replace(`/detail/${post_id}`)
 };
 
   return (
@@ -109,20 +106,21 @@ const addComment = () => {
           </Grid>
             <Text color="silver" size="13px" height="20px">몇시간 전</Text>
             {/* 댓글 올라오는 창 */}
-            <CommentList>
+            <Grid>
               <Grid
                 is_flex="true"
                 direction="row"
                 justify="flex-start"
                 alignItems="center"
               >
-                <Text
-                margin="0 8px 0 0"
-                bold="600"
-                >username</Text>
-                <Text>commentasdlk;</Text>
+              <CommentsBox
+                postId={post_id}
+              >
+              </CommentsBox>
+
+
               </Grid>
-            </CommentList>
+            </Grid>
         </ContentBox>
 
             {/* 댓글 남기기 */}
@@ -143,8 +141,24 @@ const addComment = () => {
             </IconBox>
 
             <Grid flex justify="space-between" width="377px" margin="0">
-
-              <CommentInput placeholder="댓글달기..."></CommentInput>
+            <form
+            style={formstyle}
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+            >
+              <CommentInput
+              // type= "text"
+              // width="100%"
+              // border="none"
+              // background= "none"
+              // color= "silver"
+              placeholder="댓글달기..."
+              onChange={(e) => {
+                setcomment(e.target.value);
+              }}
+              >
+              </CommentInput>
               <Button
                 text="게시"
                 backgroundColor="transparent"
@@ -152,8 +166,8 @@ const addComment = () => {
                 color="#cde6fd"
                 width="40px"
                 _onClick={addComment}
-
               ></Button>
+            </form>
             </Grid>
           </CommentBox>
         </Grid>
@@ -186,8 +200,7 @@ const CommentInput = styled.input`
   width: 100%;
   border: none;
   background: none;
-  color: silver;
-
+  color: black;
   &:focus {
     outline : none;
     border : none;
@@ -209,5 +222,18 @@ const TextBox = styled.div`
   margin: 0 0 0 15px;
   width: 250px;
 `;
+
+const CommentList = styled.div`
+  height : 220px;
+  overflow : auto;
+  margin-top : 50px;
+`;
+
+const formstyle = {
+  width:"95%",
+  display:"flex",
+  direction:"row",
+  justify:"flex-start",
+}
 
 export default DetailCont;

@@ -18,6 +18,7 @@ const Detail = (props) => {
   const post_id = props.match.params.id;
 
   const postOne = useSelector((state) => state.post.target);
+  console.log("aaa", postOne);
 
   React.useEffect(() => {
     dispatch(postActions.getPostOneDB(post_id));
