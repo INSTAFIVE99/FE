@@ -107,9 +107,11 @@ const addPostDB = (post) => {
       })
     );
 
+
     await axios({
       method: "post",
       url: "http://13.124.136.171/api/posts/write",
+      //url : process.env.REACT_APP_URL+"api/posts/write",
       data: form,
       headers: {
         "Content-Type": "multipart/form-data",

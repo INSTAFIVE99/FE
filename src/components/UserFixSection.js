@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import { Button, Grid, Image, Text } from "../elements/index";
+import { Grid, Image, Text } from "../elements/index";
+import { history } from "../redux/configureStore";
 
 import Cookies from "universal-cookie";
 
@@ -16,6 +17,13 @@ const UserFixSection = (props) => {
     "권규민",
   ]);
 
+  const logOut = () => {
+    cookies.remove("myJwt");
+    cookies.remove("username");
+    alert("로그아웃이 완료되었습니다!")
+    history.replace("/");
+  }
+
   return (
     <React.Fragment>
       <UserBox width="100%">
@@ -25,7 +33,7 @@ const UserFixSection = (props) => {
             <TextBox>
               <Text bold>{cookies.get("username")}</Text>
             </TextBox>
-            <SideButton>로그아웃</SideButton>
+            <SideButton onClick={logOut}>로그아웃</SideButton>
           </Grid>
         </Userinfo>
         <Grid flex justify="space-between" height="40px" margin="10px 0 0 0">
@@ -113,6 +121,7 @@ const SideButton = styled.button`
   font-size: 12px;
   color: #1089ff;
   font-weight: 700;
+  cursor : pointer;
 `;
 
 const TextBox = styled.div`
