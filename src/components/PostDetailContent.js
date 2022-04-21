@@ -40,6 +40,50 @@ const DetailCont = (props) => {
     history.replace(`/detail/${post_id}`)
 };
 
+
+  // const username = cookies.get("username");
+
+  //   console.log( "ehlasdlf", postOne.commentsList);
+  //   console.log("pc", postOne.commentsList);
+
+
+
+  // const extendpostOne = postOne.commentsList;
+  // console.log("asdf213asdf",extendpostOne);
+
+
+  
+    
+  // const renderComments = ({postOne}) => {
+    
+  //   for (let i = 0; i < extendpostOne.length; i++) {
+  //     if(i > 0){
+  //       console.log("첫번째", extendpostOne[i]);
+  //       console.log("두번째", extendpostOne[i].username)
+  //       return (
+  //       <Grid>
+  //         <Text>
+  //           {extendpostOne[i].username}
+  //         </Text>
+  //         <Text>
+  //           {extendpostOne[i].contents}
+  //         </Text>
+  //       </Grid>
+  //     )} else {
+  //       return
+  //     };
+  //   };
+  // };
+  // render 닫기
+
+  // const listedComments = (extendpostOne) => {
+  //   const extendpostOne = {
+  //     [],
+  //   }
+  // }
+  
+
+
   return (
     <Grid width="37%" borderL="1px solid #d9d9d9">
       <Grid flex direction="column">
@@ -107,19 +151,7 @@ const DetailCont = (props) => {
             <Text color="silver" size="13px" height="20px">몇시간 전</Text>
             {/* 댓글 올라오는 창 */}
             <Grid>
-              <Grid
-                is_flex="true"
-                direction="row"
-                justify="flex-start"
-                alignItems="center"
-              >
-              {/* <CommentsBox
-                postId={post_id}
-              >
-              </CommentsBox> */}
-
-
-              </Grid>
+             {/* {renderComments} */}
             </Grid>
         </ContentBox>
 

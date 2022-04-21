@@ -1,13 +1,19 @@
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { apis } from "../../shared/axios";
+import { createAction, handleActions } from "redux-actions";
+import { produce } from "immer";
 
 // const cookies = new Cookies();
 
 const ADDCOMMENT = "ADDCOMMENT"
 const DELCOMMENT = "DELCOMMENT"
-const UPLOADCOMMENT = "UPLOADCOMMENT"
-const UPDATECOMMENT = "UPDATECOMMENT";
+// const UPLOADCOMMENT = "UPLOADCOMMENT"
+
+
+
+const addcomment = createAction(ADDCOMMENT, (contents, postId) => ({contents, postId}));
+const delcomment = createAction(DELCOMMENT, (postId) => ({postId}));
 
 
 const initialState = {
@@ -15,18 +21,18 @@ const initialState = {
     post_id: "",
 }
 
-const AddComment = (payload) => {
-    return { type:ADDCOMMENT, payload: payload}
-    console.log("a1234", payload)
-}
+// const AddComment = (payload) => {
+//     return { type:ADDCOMMENT, payload: payload}
+//     console.log("a1234", payload)
+// }
 
-const UPLOADcomment = (payload) => {
-    return { type:UPLOADCOMMENT, payload: payload}
-}
+// const UPLOADcomment = (payload) => {
+//     return { type:UPLOADCOMMENT, payload: payload}
+// }
 
-const DelComment = (payload) => {
-    return { type:DELCOMMENT, payload: payload}
-}
+// const DelComment = (payload) => {
+//     return { type:DELCOMMENT, payload: payload}
+// }
 
 
 export const __AddComment = (contents, postId) => {
@@ -58,10 +64,6 @@ export const __DELComment = (postId) => {
 };
 
 
-
-
-
-
 //   reducer
 export const ControlComment = (currentState, action) => {
   switch(action.type){
@@ -80,4 +82,25 @@ export const ControlComment = (currentState, action) => {
   }
 }
 
-export default ControlComment;
+export default handleActions(
+  {
+    [ADDCOMMENT]: (state, action) =>
+    produce(state, (draft) =>{
+      draft.userId = action.payload.userId;
+      draft.contents = action.payload.contents;
+    }),
+
+    [DELCOMMENT]: (state, action) =>
+    produce(state, (draft) => {
+      draft.userId = action.payload.userId;
+    }),
+  },
+  initialState
+);
+
+const actionCreators = {
+  addcomment,
+  delcomment
+};
+
+export { actionCreators }

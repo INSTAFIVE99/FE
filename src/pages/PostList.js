@@ -14,13 +14,14 @@ const cookies = new Cookies();
 
 const PostList = () => {
 
-    if(!cookies.get("myJwt")){
-      history.replace("/")
-    }
-    
+    // if(!cookies.get("myJwt")){
+    //   history.replace("/")
+    // }
+
     const dispatch = useDispatch();
     const post_list = useSelector((state) => state.post.list);
-    console.log(post_list);
+
+   
 
     React.useEffect(() => {
     
