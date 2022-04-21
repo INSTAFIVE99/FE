@@ -22,8 +22,8 @@
 
 프로젝트 관련 링크
 ============
-💡 사이트 링크 :  \
-📺 유튜브 링크 : 
+💡 사이트 링크 : http://seora-pj.shop.s3-website.ap-northeast-2.amazonaws.com/ \
+📺 유튜브 링크 : [![유튜브 링크](http://img.youtube.com/vi/BmfaBBLQis0/0.jpg)](https://www.youtube.com/watch?v=BmfaBBLQis0)
 
 프로젝트 팀원 소개
 ============
